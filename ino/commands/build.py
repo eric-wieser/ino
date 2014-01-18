@@ -132,12 +132,15 @@ class Build(Command):
                                     human_name='Arduino variants directory')
 
         toolset = [
-            ('make', args.make),
             ('cc', args.cc),
             ('cxx', args.cxx),
             ('ar', args.ar),
             ('objcopy', args.objcopy),
         ]
+        
+        self.e.find_arduino_tool(
+            'make', ['hardware', 'tools', 'avr', 'utils', 'bin'], 
+            items=[args.make], human_name=args.make)
 
         for tool_key, tool_binary in toolset:
             self.e.find_arduino_tool(
